@@ -45,10 +45,10 @@ INSERT INTO roles (nombre_rol) VALUES
 -- Tu código aquí
 ALTER TABLE usuarios ADD COLUMN id_rol INT;
 
-UPDATE usuarios SET id_rol = 1 WHERE id_usuario BETWEEN 1 AND 5;  -- Bronce
-UPDATE usuarios SET id_rol = 2 WHERE id_usuario BETWEEN 6 AND 10; -- Plata
-UPDATE usuarios SET id_rol = 3 WHERE id_usuario BETWEEN 11 AND 15; -- Oro
-UPDATE usuarios SET id_rol = 4 WHERE id_usuario BETWEEN 16 AND 20; -- Platino
+UPDATE usuarios SET id_rol = 1 WHERE id_usuario = 1;  -- Bronce
+UPDATE usuarios SET id_rol = 2 WHERE id_usuario = 2; -- Plata
+UPDATE usuarios SET id_rol = 3 WHERE id_usuario = 3; -- Oro
+UPDATE usuarios SET id_rol = 4 WHERE id_usuario = 4; -- Platino
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_usuarios_roles
 FOREIGN KEY (id_rol) REFERENCES roles(id_rol);
@@ -86,7 +86,6 @@ INSERT INTO categorias (nombre_categoria) VALUES
 ALTER TABLE usuarios ADD COLUMN id_categoria INT;
 -- PASO 3
 -- Tu código aquí
--- Asignar categorías a usuarios específicos
 UPDATE usuarios SET id_categoria = 1 WHERE id_usuario IN (1, 5, 9, 13, 17); -- Electrónicos
 UPDATE usuarios SET id_categoria = 2 WHERE id_usuario IN (2, 6, 10, 14, 18); -- Ropa y Accesorios
 UPDATE usuarios SET id_categoria = 3 WHERE id_usuario IN (3, 7, 11, 15, 19); -- Libros
