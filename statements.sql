@@ -107,11 +107,31 @@ INNER JOIN categorias ON usuarios.id_categoria = categorias.id_categoria;
 /* Relación tipo N:M */
 -- PASO 1
 -- Tu código aquí
-
-
+CREATE TABLE usuarios_categorias (
+    id_usuario_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_categoria INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
+);
 -- PASO 2
 -- Tu código aquí
-
-
+INSERT INTO usuarios_categorias (id_usuario, id_categoria) VALUES
+(1, 1), (1, 2), (1, 3),  -- Usuario 1 con 3 categorías
+(2, 4), (2, 5),          -- Usuario 2 con 2 categorías
+(3, 6), (3, 7),          -- Usuario 3 con 2 categorías
+(4, 8), (4, 9), (4, 10); -- Usuario 4 con 3 categorías
 -- PASO 3
 -- Tu código aquí
+SELECT 
+    usuarios.id_usuario, 
+    usuarios.nombre, 
+    usuarios.apellido, 
+    usuarios.email, 
+    usuarios.edad, 
+    roles.nombre_rol, 
+    categorias.nombre_categoria
+FROM usuarios
+INNER JOIN roles ON usuarios.id_rol = roles.id_rol
+INNER JOIN usuarios_categorias ON usuarios.id_usuario = usuarios_categorias.id_usuario
+INNER JOIN categorias ON usuarios_categorias.id_categoria = categorias.id_categoria;
